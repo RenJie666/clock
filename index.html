@@ -3,51 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Montserrat:900">
     <title>专注>时间>金钱</title>
     <style>
         body{
             background: #0d1320;
             overflow: hidden;
         }
-        #timer{
+        p {
+            color: #e2ecfd;
+            text-align: center;
+        }
+        h2 {
+            color: #f0b40f;
+            text-align: center;
+        }
+        #about{
             text-align: center;
             font-size:56vh;
             font-weight: bold;
             line-height: 56vh;
             color:#e2ecfd;
         }
-        #date{
-            margin-top:0px;
-            text-align: center;
-            font-size:28vh;
-            font-weight: bold;
-            color:#e2ecfd;
-        }
-        .about{
-            width:600px;
-            margin:0 auto;
-            padding-top:20px;
-            display: flex;
-            align-items : center;
-              
-        }
-        .about .item{
-            color:rgb(255, 255, 255);
-            flex:1;
-            text-align: center;
+        
+        #timer{
+        color: #e2ecfd;
+        text-align: center;
+        font-size: 46vh;
+        font-weight:bold;
+        line-height: 38vh;
+        /* text-transform: uppercase; */
+        font-family: 'Lato', sans-serif;
+        /* letter-spacing: 5px; */
         }
 
-    </style>
+        .days, .hours, .minutes, .seconds {
+        display: inline-block;
+        padding: 20px;
+        width: 100px;
+        border-radius: 5px;
+        margin-right:10px;
+        text-align: center;
+        
+        }
+
+        .days {
+        background: #EF2F3C;
+        }
+
+        .hours {
+        background: #eeeeee;
+        color: #183059;
+        }
+
+        .minutes {
+        background: #276FBF;
+        }
+
+        .seconds {
+        background: #F0A202;
+        }
+
+        .numbers {
+        font-family: 'Montserrat', sans-serif;
+        color:  #183059;
+        font-size: 4em;
+        text-align: center;
+        }
+
+        .white {
+        position: absolute;
+        background:  #eeeeee;
+        height: 85px;
+        width: 75px;
+        left: 30%;
+        top: 2%;
+        }
+
+        .red {
+        position: absolute;
+        background:  #EF2F3C;
+        left: 18%;
+        top: 9%;
+        height: 65px;
+        width: 70px;
+        
+        }
+
+        .blue {
+        position: absolute;
+        background:  #276FBF;
+        height: 80px;
+        width: 80px;
+        left: 60%;
+        top: 5%;
+
+
+        }
+                #date{
+                    margin-top:0px;
+                    text-align: center;
+                    font-size:25vh;
+                    font-weight: bold;
+                    color:#e2ecfd;
+                }
+                .about{
+                    width:600px;
+                    margin:0 auto;
+                    padding-top:20px;
+                    display: flex;
+                    align-items : center;
+                    
+                }
+                .about .item{
+                    color:rgb(255, 255, 255);
+                    flex:1;
+                    text-align: center;
+                }
+
+            </style>
 </head>
 <body>
+    <p>1年=365天=12月=52周=8760时=525600分</p> 
+    <h2>2021年倒计时</h2>
     <div class="about">
-        <div class="item">
+        
+        <!-- <div class="item"> -->
             <!-- <a target="_blank" href="https://juejin.im/user/1556564194370270">
                 <img style="height:40px;" src="./img/juejin.svg" alt="">
                   
             </a>  -->
-            1年=365天=12月=52周=8760时=525600分
-        </div>
+            
+            
+            <!-- <div id="timer"> -->
+              
+
+                <div class="days"> 
+                    <div id="days" class="numbers "> </div>days</div> 
+                  <div class="hours"> 
+                    <div  id="hours" class="numbers"> </div>hours</div> 
+                  <div class="minutes"> 
+                    <div  id="minutes" class="numbers"> </div>minutes</div> 
+                  <div   class="seconds"> 
+                    <div id="seconds" class="numbers"> </div>seconds</div> 
+                  </div>
+            
+            </div>
+            </div>
+                
         <!-- <div class="item">
             <a target="_blank" href="https://space.bilibili.com/26995758">
                 <img style="height:35px;" src="./img/bili.svg" alt="">
@@ -69,6 +172,34 @@
     <div id="timer">06:12</div>
 
     <script>
+            const year = new Date().getFullYear();
+const myDate = new Date('Jan 1, 2022 00:00:00');
+console.log(myDate);
+
+// countdown
+let timer = setInterval(function() {
+
+  // get today's date
+  const today = new Date().getTime();
+
+  // get the difference
+  const diff = myDate - today;
+
+  // math
+  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+  // display
+  document.getElementById("days").innerHTML=days
+  document.getElementById("hours").innerHTML=hours
+  document.getElementById("minutes").innerHTML=minutes
+  document.getElementById("seconds").innerHTML=seconds
+
+
+
+}, 1);
         let showSymbl = true
         function clock(){
             let now = new Date()
@@ -90,10 +221,9 @@
         setInterval(()=>{
             clock()
         },1000)
-    </script>
 
 
-<script>
+
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
